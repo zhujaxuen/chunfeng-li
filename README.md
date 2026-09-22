@@ -1,38 +1,63 @@
-# chunfeng-li — diário de mandarim
+# 春风里 chūnfēng lǐ
 
-> **Acesse o site:** [zhujaxuen.github.io/chunfeng-li](https://zhujaxuen.github.io/chunfeng-li/)
+> *"na brisa da primavera"* — 花儿开在春风里, a florzinha desabrocha na brisa da primavera.
 
-## Arquivos
-- `index.html` — o diário público, lê `entries.json` e mostra as entradas.
-- `admin.html` — painel pra adicionar/excluir entradas direto pelo navegador, sem editar código.
-- `entries.json` — os dados (2 entradas de exemplo já inclusas).
+Um diário público de aprendizado de mandarim, começando pelo HSK1. Sem app, sem plataforma de terceiros — só um site estático que evolui junto com o estudo, uma entrada por vez.
 
-## Como colocar no ar
+**🔗 [zhujaxuen.github.io/chunfeng-li](https://zhujaxuen.github.io/chunfeng-li/)**
 
-1. Crie o repositório no GitHub (ex: `chunfeng-li`), público ou privado.
-2. Suba esses 3 arquivos pra raiz do repositório (pode arrastar pela interface do GitHub mesmo, ou via git).
-3. Vá em **Settings → Pages**, escolha a branch (geralmente `main`) e pasta `/ (root)`. Salve.
-4. Em alguns minutos o site estará em `https://zhujaxuen.github.io/chunfeng-li/`.
+---
 
-## Como gerar o token de acesso
+## A ideia
 
-Pra `admin.html` conseguir commitar por você, precisa de um Personal Access Token:
+Aprender um idioma é um processo lento e não-linear — muito mais parecido com uma planta crescendo do que com uma barra de progresso enchendo. Esse projeto é uma tentativa de registrar esse processo honestamente: o que foi estudado, quando, e como as palavras aparecem em uso real, não só como itens soltos numa lista.
 
-1. GitHub → clique na sua foto → **Settings** → **Developer settings** → **Personal access tokens** → **Fine-grained tokens** → **Generate new token**.
-2. Em **Repository access**, escolha **Only select repositories** e selecione o `chunfeng-li`.
-3. Em **Permissions → Repository permissions**, dê acesso de **Read and write** em **Contents**.
-4. Gere o token e copie (ele só aparece uma vez).
+Cada entrada do diário registra um dia de estudo — nível do HSK, um caractere em destaque (exibido dentro do 田字格, a grade tradicional de prática de caligrafia), e o vocabulário aprendido naquele dia, cada palavra acompanhada de uma frase de exemplo com contexto e tradução.
 
-## Como usar o painel
+## Como funciona
 
-1. Abra `https://zhujaxuen.github.io/chunfeng-li/admin.html`.
-2. Preencha usuário, repositório, branch e cole o token.
-3. Preencha a entrada (data, nível HSK, título, caractere do dia opcional, conteúdo, vocabulário).
-4. Clique em **Salvar entrada** — isso lê o `entries.json` atual, adiciona a nova entrada, e faz um commit direto no repositório.
-5. Recarregue `index.html` pra ver a entrada nova.
+O site inteiro é HTML/CSS/JS puro, sem build step, sem framework, hospedado de graça no GitHub Pages. As entradas moram num único `entries.json`, e existe um painel (`admin.html`) que escreve nesse arquivo diretamente pela API do GitHub — ou seja, dá pra adicionar uma entrada nova só pelo navegador, do celular inclusive, sem precisar abrir editor de código ou dar commit manual.
 
-O token fica salvo só no `localStorage` do seu navegador (nunca é escrito em nenhum arquivo do repo). Guarde `admin.html` só pra você — qualquer pessoa que tenha a URL *e* o seu token conseguiria editar o diário, então não compartilhe o token com ninguém e evite linkar `admin.html` a partir do site público.
+```
+zhujaxuen/chunfeng-li
+├── index.html      diário público — lê entries.json e renderiza as entradas
+├── admin.html       painel de escrita — form → commit direto no repo via GitHub API
+├── entries.json      os dados: cada entrada com data, nível, texto e vocabulário
+└── README.md
+```
 
-## Personalização rápida
-- Trocar a paleta de cores: edite as variáveis `--paper`, `--ink`, `--seal`, `--brass` no topo do `<style>` de `index.html` e `admin.html`.
-- Adicionar mais campos por entrada (ex: nota de gramática): edite o objeto `entry` em `admin.html` e o template de renderização em `index.html`.
+## Estrutura de uma entrada
+
+```json
+{
+  "date": "2026-09-21",
+  "level": "HSK1",
+  "title": "Cumprimentos e família",
+  "hanzi": "家",
+  "pinyin": "jiā",
+  "content": "o que foi estudado naquele dia...",
+  "vocab": [
+    { "word": "谢谢", "pinyin": "xièxie", "phrase": "谢谢你！— Obrigado(a)!" }
+  ]
+}
+```
+
+## Rodando/configurando o seu próprio
+
+<details>
+<summary>Passo a passo pra clonar esse formato pro seu próprio diário</summary>
+
+1. Faça um fork ou copie os 3 arquivos (`index.html`, `admin.html`, `entries.json`) pra um repositório novo.
+2. Em **Settings → Pages**, defina a branch `main` e pasta `/ (root)`. O site sobe em `https://SEU-USUARIO.github.io/SEU-REPO/`.
+3. Gere um **Personal Access Token** (fine-grained) em GitHub → Settings → Developer settings, com acesso **Read and write** em **Contents**, restrito ao seu repositório.
+4. Abra `admin.html`, preencha usuário/repositório/branch/token (fica salvo só no seu navegador) e comece a escrever.
+
+</details>
+
+## Uma nota sobre o token
+
+`admin.html` guarda o token só no `localStorage` do seu navegador — ele nunca é commitado nem enviado a nada além da API do GitHub. Ainda assim, evite linkar essa página a partir do site público e não compartilhe o token com ninguém: quem tiver a URL do admin *e* o token consegue editar o repositório.
+
+---
+
+*四季常在，学无止境 — as estações sempre voltam, o aprendizado nunca termina.*
