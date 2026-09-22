@@ -1,5 +1,7 @@
 # chunfeng-li — diário de mandarim
 
+> **Acesse o site:** [zhujaxuen.github.io/chunfeng-li](https://zhujaxuen.github.io/chunfeng-li/)
+
 ## Arquivos
 - `index.html` — o diário público, lê `entries.json` e mostra as entradas.
 - `admin.html` — painel pra adicionar/excluir entradas direto pelo navegador, sem editar código.
