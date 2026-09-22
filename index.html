@@ -217,18 +217,46 @@
     margin:0 0 14px;
     max-width:64ch;
   }
-  .tags{
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
+  .vocab{
+    margin-top:18px;
+    border-top:1px dashed var(--line);
+    padding-top:16px;
   }
-  .tag{
+  .vocab-label{
+    font-size:11px;
+    font-weight:600;
+    letter-spacing:0.05em;
+    color:var(--ink-faint);
+    text-transform:uppercase;
+    margin-bottom:10px;
+  }
+  .vocab-row{
+    display:grid;
+    grid-template-columns:1fr 3fr;
+    gap:14px;
+    padding:9px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .vocab-row:last-child{ border-bottom:none; }
+  .vocab-word{
     font-family:'Noto Serif SC',serif;
-    font-size:12.5px;
+  }
+  .vocab-word .hz{
+    font-size:19px;
+    font-weight:600;
+    color:var(--ink);
+    display:block;
+  }
+  .vocab-word .py{
+    font-size:12px;
+    color:var(--seal-soft);
+    font-style:italic;
+  }
+  .vocab-phrase{
+    font-size:14px;
+    line-height:1.6;
     color:var(--ink-soft);
-    background:var(--paper-deep);
-    padding:3px 9px;
-    border-radius:2px;
+    align-self:center;
   }
 
   .empty{
@@ -250,6 +278,8 @@
     .entry{ grid-template-columns:56px 1fr; gap:14px; }
     .entry .tianzige, .entry-noglyph{ width:52px; height:52px; }
     .entry .tianzige span{ font-size:28px; }
+    .vocab-row{ grid-template-columns:1fr 2.2fr; gap:10px; }
+    .vocab-word .hz{ font-size:17px; }
   }
 
   @media (prefers-reduced-motion: no-preference){
@@ -264,7 +294,7 @@
     <div class="hero-char">
       <div class="tianzige"><span>春</span></div>
       <div>
-        <h1>春风里 <span style="font-weight:400;color:var(--ink-soft);font-size:0.55em;">chunfengli</span></h1>
+        <h1>春风里 <span style="font-weight:400;color:var(--ink-soft);font-size:0.55em;">chūnfēng lǐ</span></h1>
         <p class="sub">"na brisa da primavera" — 花儿开在春风里</p>
       </div>
     </div>
@@ -343,8 +373,19 @@ function render(){
       ? `<div class="tianzige"><span>${escapeHtml(e.hanzi)}</span></div>`
       : `<div class="entry-noglyph">sem<br>caractere</div>`;
     const pinyin = e.pinyin ? `<p class="pinyin">${escapeHtml(e.pinyin)}</p>` : '';
-    const tags = (e.tags && e.tags.length)
-      ? `<div class="tags">${e.tags.map(t=>`<span class="tag">${escapeHtml(t)}</span>`).join('')}</div>`
+    const vocab = (e.vocab && e.vocab.length)
+      ? `<div class="vocab">
+          <div class="vocab-label">vocabulário</div>
+          ${e.vocab.map(v => `
+            <div class="vocab-row">
+              <div class="vocab-word">
+                <span class="hz">${escapeHtml(v.word)}</span>
+                <span class="py">${escapeHtml(v.pinyin || '')}</span>
+              </div>
+              <div class="vocab-phrase">${escapeHtml(v.phrase || '')}</div>
+            </div>
+          `).join('')}
+        </div>`
       : '';
     return `
       <article class="entry">
@@ -357,7 +398,7 @@ function render(){
           <h2>${escapeHtml(e.title)}</h2>
           ${pinyin}
           <p class="content">${escapeHtml(e.content)}</p>
-          ${tags}
+          ${vocab}
         </div>
       </article>`;
   }).join('');

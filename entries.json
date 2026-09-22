@@ -7,7 +7,11 @@
     "hanzi": "学",
     "pinyin": "xué",
     "content": "Comecei hoje com o HSK1. Aprendi os pronomes básicos (我, 你, 他) e os números de 1 a 10. O tom certo ainda é o mais difícil pra mim — vou gravar minha voz pra comparar.",
-    "tags": ["我 (wǒ)", "你 (nǐ)", "他 (tā)", "一 a 十"]
+    "vocab": [
+      { "word": "我", "pinyin": "wǒ", "phrase": "我是学生。(wǒ shì xuéshēng) — Eu sou estudante." },
+      { "word": "你", "pinyin": "nǐ", "phrase": "你好吗？(nǐ hǎo ma?) — Você está bem?" },
+      { "word": "他", "pinyin": "tā", "phrase": "他是老师。(tā shì lǎoshī) — Ele é professor." }
+    ]
   },
   {
     "id": "2",
@@ -17,6 +21,11 @@
     "hanzi": "家",
     "pinyin": "jiā",
     "content": "Vocabulário de família hoje: 爸爸, 妈妈, 哥哥, 姐姐. Também revisei 你好 e 谢谢 em frases curtas. Comecei a notar o padrão de sujeito-verbo-objeto se repetindo.",
-    "tags": ["爸爸 (bàba)", "妈妈 (māma)", "谢谢 (xièxie)"]
+    "vocab": [
+      { "word": "爸爸", "pinyin": "bàba", "phrase": "我爸爸很高。(wǒ bàba hěn gāo) — Meu pai é alto." },
+      { "word": "妈妈", "pinyin": "māma", "phrase": "妈妈在家。(māma zài jiā) — Minha mãe está em casa." },
+      { "word": "谢谢", "pinyin": "xièxie", "phrase": "谢谢你！(xièxie nǐ!) — Obrigado(a)!" }
+    ]
   }
 ]
+
