@@ -1,0 +1,22 @@
+[
+  {
+    "id": "1",
+    "date": "2026-09-20",
+    "level": "HSK1",
+    "title": "Primeiro dia",
+    "hanzi": "学",
+    "pinyin": "xué",
+    "content": "Comecei hoje com o HSK1. Aprendi os pronomes básicos (我, 你, 他) e os números de 1 a 10. O tom certo ainda é o mais difícil pra mim — vou gravar minha voz pra comparar.",
+    "tags": ["我 (wǒ)", "你 (nǐ)", "他 (tā)", "一 a 十"]
+  },
+  {
+    "id": "2",
+    "date": "2026-09-21",
+    "level": "HSK1",
+    "title": "Cumprimentos e família",
+    "hanzi": "家",
+    "pinyin": "jiā",
+    "content": "Vocabulário de família hoje: 爸爸, 妈妈, 哥哥, 姐姐. Também revisei 你好 e 谢谢 em frases curtas. Comecei a notar o padrão de sujeito-verbo-objeto se repetindo.",
+    "tags": ["爸爸 (bàba)", "妈妈 (māma)", "谢谢 (xièxie)"]
+  }
+]

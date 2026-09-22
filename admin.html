@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>春风里 — Nova entrada</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>笔</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#efebe1;
+    --paper-deep:#e5e0d3;
+    --line:#d6cdb8;
+    --ink:#22201c;
+    --ink-soft:#5c574d;
+    --ink-faint:#8a8375;
+    --seal:#a32f1f;
+    --seal-soft:#c8502f;
+    --brass:#8f7530;
+    --ok:#3f6b3f;
+    --max:620px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    padding:env(safe-area-inset-top,0px) 0 env(safe-area-inset-bottom,0px);
+  }
+  .wrap{ max-width:var(--max); margin:0 auto; padding:56px 24px 100px; }
+  h1{
+    font-family:'Noto Serif SC',serif;
+    font-weight:700;
+    font-size:26px;
+    margin:0 0 4px;
+  }
+  .sub{ color:var(--ink-soft); font-size:14px; margin:0 0 36px; }
+
+  fieldset{
+    border:1px solid var(--line);
+    border-radius:2px;
+    padding:20px;
+    margin:0 0 28px;
+  }
+  legend{
+    font-size:12px;
+    font-weight:600;
+    letter-spacing:0.03em;
+    color:var(--brass);
+    padding:0 6px;
+  }
+  label{
+    display:block;
+    font-size:13px;
+    font-weight:600;
+    color:var(--ink-soft);
+    margin:14px 0 6px;
+  }
+  label:first-of-type{ margin-top:0; }
+  input, textarea, select{
+    width:100%;
+    font-family:'Inter',sans-serif;
+    font-size:15px;
+    padding:10px 12px;
+    border:1.5px solid var(--line);
+    border-radius:2px;
+    background:#fbf9f4;
+    color:var(--ink);
+  }
+  input:focus, textarea:focus, select:focus{
+    outline:none;
+    border-color:var(--seal);
+  }
+  textarea{ resize:vertical; min-height:100px; font-family:'Inter',sans-serif; line-height:1.6; }
+  .row2{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .hint{ font-size:12px; color:var(--ink-faint); margin-top:6px; }
+
+  button{
+    font-family:'Inter',sans-serif;
+    font-size:14px;
+    font-weight:600;
+    letter-spacing:0.02em;
+    padding:11px 22px;
+    border:1.5px solid var(--ink);
+    border-radius:2px;
+    background:var(--ink);
+    color:var(--paper);
+    cursor:pointer;
+    transition:opacity 0.15s ease;
+  }
+  button.secondary{
+    background:transparent;
+    color:var(--ink);
+  }
+  button.danger{
+    background:transparent;
+    border-color:var(--seal);
+    color:var(--seal);
+    font-size:12px;
+    padding:6px 12px;
+  }
+  button:disabled{ opacity:0.5; cursor:default; }
+  button:hover:not(:disabled){ opacity:0.85; }
+
+  .status{
+    margin-top:16px;
+    font-size:13px;
+    padding:10px 14px;
+    border-radius:2px;
+    display:none;
+  }
+  .status.show{ display:block; }
+  .status.ok{ background:#e8efe6; color:var(--ok); }
+  .status.err{ background:#f5e4df; color:var(--seal); }
+  .status.pending{ background:var(--paper-deep); color:var(--ink-soft); }
+
+  .list{ margin-top:8px; }
+  .list-item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    padding:10px 0;
+    border-bottom:1px solid var(--line);
+    font-size:13.5px;
+  }
+  .list-item:last-child{ border-bottom:none; }
+  .list-item .meta{ color:var(--ink-faint); font-size:12px; }
+
+  a.backlink{
+    display:inline-block;
+    margin-bottom:24px;
+    color:var(--ink-soft);
+    font-size:13px;
+    text-decoration:none;
+    border-bottom:1px solid var(--line);
+  }
+  a.backlink:hover{ color:var(--seal); border-color:var(--seal); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="backlink" href="index.html">← voltar ao diário</a>
+  <h1>Nova entrada</h1>
+  <p class="sub">preenche, salva, e cai direto no repositório — sem VSCode</p>
+
+  <fieldset>
+    <legend>conexão com o GitHub</legend>
+    <div class="row2">
+      <div>
+        <label for="owner">usuário / organização</label>
+        <input id="owner" placeholder="ex: seu-usuario">
+      </div>
+      <div>
+        <label for="repo">repositório</label>
+        <input id="repo" placeholder="ex: chunfeng-li">
+      </div>
+    </div>
+    <div class="row2">
+      <div>
+        <label for="branch">branch</label>
+        <input id="branch" value="main">
+      </div>
+      <div>
+        <label for="token">personal access token</label>
+        <input id="token" type="password" placeholder="ghp_...">
+      </div>
+    </div>
+    <p class="hint">o token fica salvo só neste navegador (localStorage), nunca é enviado a mais ninguém além do GitHub. use um token fine-grained com permissão de leitura/escrita em "Contents" só deste repositório.</p>
+  </fieldset>
+
+  <fieldset>
+    <legend>entrada</legend>
+    <label for="date">data</label>
+    <input id="date" type="date">
+
+    <label for="level">nível</label>
+    <select id="level">
+      <option>HSK1</option>
+      <option>HSK2</option>
+      <option>HSK3</option>
+      <option>HSK4</option>
+      <option>HSK5</option>
+      <option>HSK6</option>
+    </select>
+
+    <label for="title">título</label>
+    <input id="title" placeholder="ex: Cumprimentos e família">
+
+    <div class="row2">
+      <div>
+        <label for="hanzi">caractere do dia (opcional)</label>
+        <input id="hanzi" placeholder="学" maxlength="4">
+      </div>
+      <div>
+        <label for="pinyin">pinyin (opcional)</label>
+        <input id="pinyin" placeholder="xué">
+      </div>
+    </div>
+
+    <label for="content">o que estudei</label>
+    <textarea id="content" placeholder="descreva o que aprendeu hoje..."></textarea>
+
+    <label for="tags">vocabulário (separado por vírgula)</label>
+    <input id="tags" placeholder="我 (wǒ), 你 (nǐ), 谢谢 (xièxie)">
+
+    <div style="margin-top:22px;">
+      <button id="saveBtn" onclick="saveEntry()">Salvar entrada</button>
+    </div>
+    <div id="status" class="status"></div>
+  </fieldset>
+
+  <fieldset>
+    <legend>entradas existentes</legend>
+    <button class="secondary" onclick="loadList()">Carregar lista</button>
+    <div id="list" class="list"></div>
+  </fieldset>
+</div>
+
+<script>
+const FILE_PATH = 'entries.json';
+
+function cfg(){
+  return {
+    owner: document.getElementById('owner').value.trim(),
+    repo: document.getElementById('repo').value.trim(),
+    branch: document.getElementById('branch').value.trim() || 'main',
+    token: document.getElementById('token').value.trim(),
+  };
+}
+
+function loadSavedCfg(){
+  const saved = JSON.parse(localStorage.getItem('hanyuRijiCfg') || '{}');
+  if(saved.owner) document.getElementById('owner').value = saved.owner;
+  if(saved.repo) document.getElementById('repo').value = saved.repo;
+  if(saved.branch) document.getElementById('branch').value = saved.branch;
+  if(saved.token) document.getElementById('token').value = saved.token;
+  document.getElementById('date').valueAsDate = new Date();
+}
+function persistCfg(){
+  const c = cfg();
+  localStorage.setItem('hanyuRijiCfg', JSON.stringify(c));
+}
+
+function setStatus(msg, type){
+  const el = document.getElementById('status');
+  el.textContent = msg;
+  el.className = 'status show ' + type;
+}
+
+// UTF-8 safe base64 helpers
+function utf8ToB64(str){
+  const bytes = new TextEncoder().encode(str);
+  let bin = '';
+  bytes.forEach(b => bin += String.fromCharCode(b));
+  return btoa(bin);
+}
+function b64ToUtf8(b64){
+  const bin = atob(b64.replace(/\n/g,''));
+  const bytes = new Uint8Array(bin.length);
+  for(let i=0;i<bin.length;i++) bytes[i] = bin.charCodeAt(i);
+  return new TextDecoder().decode(bytes);
+}
+
+async function ghGetFile(c){
+  const url = `https://api.github.com/repos/${c.owner}/${c.repo}/contents/${FILE_PATH}?ref=${c.branch}`;
+  const res = await fetch(url, {
+    headers: {
+      'Authorization': `Bearer ${c.token}`,
+      'Accept': 'application/vnd.github+json'
+    }
+  });
+  if(res.status === 404){
+    return { entries: [], sha: null };
+  }
+  if(!res.ok){
+    const t = await res.text();
+    throw new Error(`erro ao ler o arquivo (${res.status}): ${t}`);
+  }
+  const data = await res.json();
+  const content = b64ToUtf8(data.content);
+  return { entries: JSON.parse(content), sha: data.sha };
+}
+
+async function ghPutFile(c, entries, sha, message){
+  const url = `https://api.github.com/repos/${c.owner}/${c.repo}/contents/${FILE_PATH}`;
+  const body = {
+    message,
+    content: utf8ToB64(JSON.stringify(entries, null, 2)),
+    branch: c.branch,
+  };
+  if(sha) body.sha = sha;
+  const res = await fetch(url, {
+    method: 'PUT',
+    headers: {
+      'Authorization': `Bearer ${c.token}`,
+      'Accept': 'application/vnd.github+json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
+  });
+  if(!res.ok){
+    const t = await res.text();
+    throw new Error(`erro ao salvar (${res.status}): ${t}`);
+  }
+  return res.json();
+}
+
+async function saveEntry(){
+  const c = cfg();
+  if(!c.owner || !c.repo || !c.token){
+    setStatus('preenche usuário, repositório e token antes de salvar.', 'err');
+    return;
+  }
+  persistCfg();
+
+  const title = document.getElementById('title').value.trim();
+  const content = document.getElementById('content').value.trim();
+  if(!title || !content){
+    setStatus('título e conteúdo são obrigatórios.', 'err');
+    return;
+  }
+
+  const entry = {
+    id: Date.now().toString(),
+    date: document.getElementById('date').value || new Date().toISOString().slice(0,10),
+    level: document.getElementById('level').value,
+    title,
+    hanzi: document.getElementById('hanzi').value.trim(),
+    pinyin: document.getElementById('pinyin').value.trim(),
+    content,
+    tags: document.getElementById('tags').value.split(',').map(s=>s.trim()).filter(Boolean),
+  };
+
+  const btn = document.getElementById('saveBtn');
+  btn.disabled = true;
+  setStatus('lendo o repositório...', 'pending');
+
+  try{
+    const { entries, sha } = await ghGetFile(c);
+    entries.unshift(entry);
+    setStatus('salvando commit...', 'pending');
+    await ghPutFile(c, entries, sha, `diario: nova entrada — ${entry.title}`);
+    setStatus('entrada salva! já está no repositório.', 'ok');
+    document.getElementById('title').value = '';
+    document.getElementById('hanzi').value = '';
+    document.getElementById('pinyin').value = '';
+    document.getElementById('content').value = '';
+    document.getElementById('tags').value = '';
+  }catch(err){
+    setStatus(err.message, 'err');
+  }finally{
+    btn.disabled = false;
+  }
+}
+
+async function loadList(){
+  const c = cfg();
+  if(!c.owner || !c.repo || !c.token){
+    setStatus('preenche usuário, repositório e token antes de carregar.', 'err');
+    return;
+  }
+  persistCfg();
+  const listEl = document.getElementById('list');
+  listEl.innerHTML = '<p class="hint">carregando...</p>';
+  try{
+    const { entries } = await ghGetFile(c);
+    if(entries.length === 0){
+      listEl.innerHTML = '<p class="hint">nenhuma entrada ainda.</p>';
+      return;
+    }
+    listEl.innerHTML = entries.map(e => `
+      <div class="list-item">
+        <div>
+          <div>${e.title}</div>
+          <div class="meta">${e.date} · ${e.level}</div>
+        </div>
+        <button class="danger" onclick="deleteEntry('${e.id}')">excluir</button>
+      </div>
+    `).join('');
+  }catch(err){
+    listEl.innerHTML = '';
+    setStatus(err.message, 'err');
+  }
+}
+
+async function deleteEntry(id){
+  if(!confirm('excluir esta entrada? não tem como desfazer por aqui.')) return;
+  const c = cfg();
+  setStatus('excluindo...', 'pending');
+  try{
+    const { entries, sha } = await ghGetFile(c);
+    const next = entries.filter(e => e.id !== id);
+    await ghPutFile(c, next, sha, `diario: remove entrada ${id}`);
+    setStatus('entrada excluída.', 'ok');
+    loadList();
+  }catch(err){
+    setStatus(err.message, 'err');
+  }
+}
+
+loadSavedCfg();
+</script>
+</body>
+</html>
